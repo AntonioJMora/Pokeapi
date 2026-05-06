@@ -14,8 +14,9 @@ El proyecto cuenta con 2 partes
 El proyecto cuenta con un solo css, que abarca ambos HTML y las clases que se añaden mediante JS.
 
 ### Parte de JS
-El proyecto tiene 2 JS:
+El proyecto tiene 3 JS:
 - api.js = Se encarga de obtener los datos de la pokeapi
 - ui.js = Se encarga de escuchar y de dar los datos que se muestran en pantalla
+- detalle.js = Solo es usado por detalle.html, muestra la información de los elementos dependiendo de si es un pokemon u otro dato.
  
   
