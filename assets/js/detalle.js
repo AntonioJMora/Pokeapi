@@ -1,13 +1,13 @@
 /* ── Leemos los parámetros que vienen en la URL (nombre y tipo del recurso) ── */
 const params = new URLSearchParams(window.location.search);
-const NAME   = params.get('name') || '';
-const TYPE   = params.get('type') || '';
+const NAME = params.get('name') || '';
+const TYPE = params.get('type') || '';
 
 // Referencia al contenedor donde inyectaremos todo el HTML del detalle
 const container = document.getElementById('detailContainer');
 
 /* ══════════════════════════════════════════════════
-    HELPERS DE TEXTO
+   HELPERS DE TEXTO
    ══════════════════════════════════════════════════ */
 
 // Devuelve la descripción en español de la pokédex; si no hay, usa inglés
@@ -22,20 +22,20 @@ function getDescription(species) {
 }
 
 /* ══════════════════════════════════════════════════
-    RENDER POKÉMON
+   RENDER POKÉMON
    ══════════════════════════════════════════════════ */
 
 // Construye y muestra todo el HTML del detalle de un pokémon
 function renderPokemon(pokemon, species) {
     // Actualizamos el título de la pestaña del navegador
-    document.title = `${pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)} — PokeApi`;
+    document.title = `${pokemon.name} — PokeApi`;
 
     // ── Sprites ──
     // Artwork oficial como imagen principal; si no existe, usamos el sprite clásico
-    const mainSprite  = getSprite(pokemon.sprites);
+    const mainSprite = getSprite(pokemon.sprites);
     const shinySprite = pokemon.sprites?.other?.['official-artwork']?.front_shiny
-                        || pokemon.sprites?.front_shiny || '';
-    const backSprite  = pokemon.sprites?.back_default || '';
+        || pokemon.sprites?.front_shiny || '';
+    const backSprite = pokemon.sprites?.back_default || '';
 
     // ── Tipos ──
     // typeBadge viene de api.js y devuelve un <span> con el color del tipo
@@ -44,21 +44,21 @@ function renderPokemon(pokemon, species) {
 
     // ── Descripción y generación ──
     const description = getDescription(species);
-    const generation  = species?.generation?.name
+    const generation = species?.generation?.name
         ?.replace('generation-', 'Gen ').toUpperCase() || '—';
 
     // ── Estadísticas base con barras de color ──
     // Cada stat se convierte en una fila con nombre, número y barra de progreso
     const statsHTML = (pokemon.stats || []).map(s => {
-        const val  = s.base_stat;
-        const pct  = Math.min((val / 255) * 100, 100).toFixed(1); // porcentaje sobre 255
-        const col  = statColor(val); // color según si el valor es alto/medio/bajo
+        const val = s.base_stat;
+        const pct = Math.min((val / 255) * 100, 100).toFixed(1); // porcentaje sobre 255
+        const col = statColor(val); // color según si el valor es alto/medio/bajo
 
         // Hacemos los nombres más legibles para el usuario
         const name = s.stat.name
-            .replace('special-attack',  'sp. atk')
+            .replace('special-attack', 'sp. atk')
             .replace('special-defense', 'sp. def')
-            .replace('hp',              'HP');
+            .replace('hp', 'HP');
 
         return `
             <div class="stat-row">
@@ -99,8 +99,8 @@ function renderPokemon(pokemon, species) {
                 <!-- Miniaturas clicables para cambiar el sprite principal -->
                 <div class="sprite-row">
                     ${shinySprite ? `<img class="sprite-mini" src="${shinySprite}" alt="Shiny" title="Shiny" onclick="swapSprite('${shinySprite}')">` : ''}
-                    ${backSprite  ? `<img class="sprite-mini" src="${backSprite}"  alt="Espalda" title="Sprite clásico (espalda)" onclick="swapSprite('${backSprite}')">` : ''}
-                    ${mainSprite  ? `<img class="sprite-mini" src="${mainSprite}"  alt="Normal"  title="Artwork oficial" onclick="swapSprite('${mainSprite}')">` : ''}
+                    ${backSprite ? `<img class="sprite-mini" src="${backSprite}"  alt="Espalda" title="Sprite clásico (espalda)" onclick="swapSprite('${backSprite}')">` : ''}
+                    ${mainSprite ? `<img class="sprite-mini" src="${mainSprite}"  alt="Normal"  title="Artwork oficial" onclick="swapSprite('${mainSprite}')">` : ''}
                 </div>
             </section>
 
@@ -157,12 +157,12 @@ function renderPokemon(pokemon, species) {
 }
 
 /* ══════════════════════════════════════════════════
-    RENDER GENÉRICO (tipos, habilidades, objetos…)
+   RENDER GENÉRICO (tipos, habilidades, objetos…)
    ══════════════════════════════════════════════════ */
 
 // Para categorías que no son pokémon mostramos los datos que tenga el recurso
 function renderGeneric(data) {
-    document.title = `${data.name.charAt(0).toUpperCase() + data.name.slice(1)} — PokeApi`;
+    document.title = `${data.name} — PokéEnciclopedia`;
 
     // Buscamos descripción en español primero, luego inglés
     const effectEntry =
@@ -185,9 +185,9 @@ function renderGeneric(data) {
                 <h3>Pokémon relacionados</h3>
                 <div class="moves-grid">
                     ${pokemonList.slice(0, 30).map(p => {
-                        const pname = p.pokemon?.name || p.name || '—';
-                        return `<a href="detalle.html?name=${pname}&type=pokemon" class="move-badge">${pname}</a>`;
-                    }).join('')}
+            const pname = p.pokemon?.name || p.name || '—';
+            return `<a href="detalle.html?name=${pname}&type=pokemon" class="move-badge">${pname}</a>`;
+        }).join('')}
                 </div>
             </section>`
         : '';
@@ -206,11 +206,11 @@ function renderGeneric(data) {
             <section class="detail-section">
                 <h3>Información</h3>
                 <div class="info-grid">
-                    ${data.id             ? `<div class="info-item"><span class="label">ID</span><span class="value">${data.id}</span></div>` : ''}
+                    ${data.id ? `<div class="info-item"><span class="label">ID</span><span class="value">${data.id}</span></div>` : ''}
                     ${data.generation?.name ? `<div class="info-item"><span class="label">Generación</span><span class="value">${data.generation.name}</span></div>` : ''}
                     ${data.move_category?.name ? `<div class="info-item"><span class="label">Categoría</span><span class="value">${data.move_category.name}</span></div>` : ''}
-                    ${data.type?.name     ? `<div class="info-item"><span class="label">Tipo</span><span class="value">${typeBadge(data.type.name)}</span></div>` : ''}
-                    ${data.cost != null   ? `<div class="info-item"><span class="label">Coste</span><span class="value">${data.cost} ₽</span></div>` : ''}
+                    ${data.type?.name ? `<div class="info-item"><span class="label">Tipo</span><span class="value">${typeBadge(data.type.name)}</span></div>` : ''}
+                    ${data.cost != null ? `<div class="info-item"><span class="label">Coste</span><span class="value">${data.cost} ₽</span></div>` : ''}
                 </div>
             </section>
 
@@ -219,18 +219,18 @@ function renderGeneric(data) {
 }
 
 /* ══════════════════════════════════════════════════
-    SWAP SPRITE
+   SWAP SPRITE
    ══════════════════════════════════════════════════ */
 
 // Cambia la imagen principal al hacer clic en una miniatura
 // Necesita ser global (window) porque se llama desde un onclick inline del HTML
-window.swapSprite = function(src) {
+window.swapSprite = function (src) {
     const img = document.getElementById('mainSprite');
     if (img) img.src = src;
 };
 
 /* ══════════════════════════════════════════════════
-    INICIALIZACIÓN
+   INICIALIZACIÓN
    ══════════════════════════════════════════════════ */
 
 (async function init() {
@@ -255,7 +255,7 @@ window.swapSprite = function(src) {
             try {
                 const raw = localStorage.getItem(cacheKey);
                 if (raw) data = JSON.parse(raw);
-            } catch {}
+            } catch { }
 
             // Si no estaba en caché, hacemos la petición a la API
             if (!data) {
@@ -264,7 +264,7 @@ window.swapSprite = function(src) {
                 data = await res.json();
 
                 // Guardamos en caché para no repetir la petición
-                try { localStorage.setItem(cacheKey, JSON.stringify(data)); } catch {}
+                try { localStorage.setItem(cacheKey, JSON.stringify(data)); } catch { }
             }
 
             renderGeneric(data);
