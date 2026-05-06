@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle Objeto</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="icon" type="image/png" href="assets/img/bola-pokemon.png">
+</head>
+<body>
+    <header>
+        <img src="assets/img/bola-pokemon.png" alt="Logo PokeApi">
+        <h1>PokeApi</h1>
+        <ul class="nav-menu">
+            <li><a href="index.html">Buscador</a></li>
+        </ul>
+    </header>
+    <main class="app-container">
+
+    <!-- Botón volver al buscador -->
+    <a href="index.html" class="btn-back">← Volver al buscador</a>
+
+    <!--
+        Contenedor donde se inyecta todo el detalle dinámicamente.
+        Empieza con el spinner de carga.
+    -->
+    <div id="detailContainer">
+        <p class="detail-loading">Cargando datos...</p>
+    </div>
+
+</main>
+    <footer>
+        <p>&copy; 2023 PokeApi. Todos los derechos reservados.</p>
+    </footer>
+    <script src="assets/js/api.js"></script>
+    <script src="assets/js/detalle.js"></script>
+</body>
+</html>

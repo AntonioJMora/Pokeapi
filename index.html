@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="icon" type="image/png" href="assets/img/bola-pokemon.png">
+    <title>PokeApi</title>
+</head>
+<body>
+    <header>
+        <img src="assets/img/bola-pokemon.png" alt="Logo PokeApi">
+        <h1>PokeApi</h1>
+    </header>
+    <main>
+        <section class="card">
+            <h2>Buscador de la API de Pokémon</h2>
+            <form class="search-controls" role="search" onsubmit="event.preventDefault();">
+                <select id="entityTypes" class="form-select" aria-label="Selección de categoría">
+                    <option value="pokemon">Pokémon</option>
+                    <option value="type">Tipo</option>
+                    <option value="ability">Habilidades</option>
+                    <option value="move">Movimientos</option>
+                    <option value="item">Objetos</option>
+                    <option value="location">Localizaciones</option>
+                    <option value="region">Regiones</option>
+                    <option value="generation">Generaciones</option>
+                    <option value="egg-group">Grupos de Huevo</option>
+                </select>
+                <input type="text" id="searchInput" class="search-input" placeholder="Escribe para buscar" aria-label="Campo de búsqueda">
+            </form>
+            <p id="searchState" class="search-state hidden" role="status" aria-live="polite">Cargando resultados...</p>
+            <output id="searchResults" class="results-grid">
+                <!-- Tarjetas dinámicas desde la API -->
+            </output>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 PokeApi. Todos los derechos reservados.</p>
+    </footer>
+    <script src="assets/js/api.js"></script>
+    <script src="assets/js/ui.js"></script>
+</body>
+</html>
