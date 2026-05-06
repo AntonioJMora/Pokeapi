@@ -7,7 +7,7 @@ const TYPE = params.get('type') || '';
 const container = document.getElementById('detailContainer');
 
 /* ══════════════════════════════════════════════════
-   HELPERS DE TEXTO
+    HELPERS DE TEXTO
    ══════════════════════════════════════════════════ */
 
 // Devuelve la descripción en español de la pokédex; si no hay, usa inglés
@@ -22,7 +22,7 @@ function getDescription(species) {
 }
 
 /* ══════════════════════════════════════════════════
-   RENDER POKÉMON
+    RENDER POKÉMON
    ══════════════════════════════════════════════════ */
 
 // Construye y muestra todo el HTML del detalle de un pokémon
@@ -157,7 +157,7 @@ function renderPokemon(pokemon, species) {
 }
 
 /* ══════════════════════════════════════════════════
-   RENDER GENÉRICO (tipos, habilidades, objetos…)
+    RENDER GENÉRICO (tipos, habilidades, objetos…)
    ══════════════════════════════════════════════════ */
 
 // Para categorías que no son pokémon mostramos los datos que tenga el recurso
@@ -219,7 +219,7 @@ function renderGeneric(data) {
 }
 
 /* ══════════════════════════════════════════════════
-   SWAP SPRITE
+    SWAP SPRITE
    ══════════════════════════════════════════════════ */
 
 // Cambia la imagen principal al hacer clic en una miniatura
@@ -230,7 +230,7 @@ window.swapSprite = function (src) {
 };
 
 /* ══════════════════════════════════════════════════
-   INICIALIZACIÓN
+    INICIALIZACIÓN
    ══════════════════════════════════════════════════ */
 
 (async function init() {
