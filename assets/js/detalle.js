@@ -28,7 +28,7 @@ function getDescription(species) {
 // Construye y muestra todo el HTML del detalle de un pokémon
 function renderPokemon(pokemon, species) {
     // Actualizamos el título de la pestaña del navegador
-    document.title = `${pokemon.name} — PokeApi`;
+    document.title = `${pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)} — PokeApi`;
 
     // ── Sprites ──
     // Artwork oficial como imagen principal; si no existe, usamos el sprite clásico
@@ -162,7 +162,7 @@ function renderPokemon(pokemon, species) {
 
 // Para categorías que no son pokémon mostramos los datos que tenga el recurso
 function renderGeneric(data) {
-    document.title = `${data.name} — PokeApi`;
+    document.title = `${data.name.charAt(0).toUpperCase() + data.name.slice(1)} — PokeApi`;
 
     // Buscamos descripción en español primero, luego inglés
     const effectEntry =

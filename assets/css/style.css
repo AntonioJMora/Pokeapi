@@ -44,23 +44,6 @@ header {
 
 header img{ width: 100px;}
 
-.nav-menu {
-    list-style: none;
-    display: flex;
-    gap: 12px;
-}
-
-.nav-menu a {
-    font-weight: 600;
-    padding: 6px 12px;
-    border-radius: var(--radio);
-    background: var(--amarillo);
-    transition: opacity .2s;
-}
-
-.nav-menu a:hover { opacity: .75; }
-
-
 /*Main*/
 
 main{
